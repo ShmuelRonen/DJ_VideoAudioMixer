@@ -2,7 +2,7 @@
 
 A powerful ComfyUI custom node for combining video clips with synchronized audio, background music, and advanced audio controls.
 
-![image](https://github.com/user-attachments/assets/f84c19c2-fe78-4bb8-9647-c7dff80add37)
+![image](https://github.com/user-attachments/assets/dc5df155-51e5-4dd5-8180-0d844a4dccf9)
 
 ## Features
 
@@ -58,6 +58,7 @@ The DJ_VideoAudioMixer node accepts two video inputs (with frames, audio, and vi
 - **bgm_volume**: Volume level for background music (0.0-1.0)
 - **fade_in_sec**: Duration of fade-in effect in seconds
 - **fade_out_sec**: Duration of fade-out effect in seconds
+- **audio_match_method**: How to handle audio shorter than video ("pad_with_silence" or "repeat_audio")
 
 ### Outputs
 
@@ -108,6 +109,15 @@ The node offers three modes for applying background music:
 1. **all**: Applies BGM to the entire combined video
 2. **first_video**: Applies BGM only to the first video segment with a fade-out at the transition
 3. **second_video**: Applies BGM only to the second video segment with a fade-in at the transition
+
+## Audio Duration Handling
+
+When an audio track is shorter than its corresponding video, the node offers two ways to handle this:
+
+1. **pad_with_silence**: Adds silence to the end of the audio to match the video duration (default)
+2. **repeat_audio**: Loops/repeats the audio to fill the entire video duration
+
+This is particularly useful for short sound effects or music tracks that you want to extend to cover the full video segment.
 
 ## Technical Details
 
