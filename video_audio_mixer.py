@@ -26,6 +26,7 @@ class DJ_VideoAudioMixer:
                 "bgm_volume": ("FLOAT", {"default": 0.3, "min": 0.0, "max": 1.0, "step": 0.05}),
                 "fade_in_sec": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 5.0, "step": 0.1}),
                 "fade_out_sec": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 5.0, "step": 0.1}),
+                "audio_match_method": (["pad_with_silence", "repeat_audio"], {"default": "pad_with_silence"}),
             }
         }
 
@@ -70,7 +71,8 @@ class DJ_VideoAudioMixer:
         return audio_tensor
 
     def VideoAudioMixer(self, images1, audio1, video_info1, images2=None, audio2=None, video_info2=None, 
-                        bgm=None, bgm_mode="all", bgm_volume=0.3, fade_in_sec=1.0, fade_out_sec=1.0):
+                        bgm=None, bgm_mode="all", bgm_volume=0.3, fade_in_sec=1.0, fade_out_sec=1.0,
+                        audio_match_method="pad_with_silence"):
         if images2 is None or video_info2 is None:
             return (images1, audio1, video_info1)
             
@@ -199,7 +201,7 @@ class DJ_VideoAudioMixer:
         total_samples = int(total_duration * sample_rate)
         samples1 = int(duration1 * sample_rate)
         samples2 = int(duration2 * sample_rate)
-        
+
         print(f"Video durations: Video1={duration1:.2f}s, Video2={duration2:.2f}s, Total={total_duration:.2f}s")
         print(f"Audio samples: Audio1={samples1}, Audio2={samples2}, Total={total_samples}")
 
@@ -207,10 +209,38 @@ class DJ_VideoAudioMixer:
         if audio_waveform1 is None:
             audio_waveform1 = torch.zeros((1, samples1))
             print(f"Audio1: Silence generated, shape={audio_waveform1.shape}")
-        
+        elif audio_waveform1.shape[1] < samples1:
+            # Audio is shorter than video
+            if audio_match_method == "repeat_audio":
+                # Calculate how many times to repeat the audio
+                repeats_needed = math.ceil(samples1 / audio_waveform1.shape[1])
+                repeated_audio = audio_waveform1.repeat(1, repeats_needed)
+                # Trim to exact length needed
+                audio_waveform1 = repeated_audio[:, :samples1]
+                print(f"Audio1 repeated {repeats_needed} times to match video duration")
+            else:  # pad_with_silence
+                # Pad with silence
+                padding = torch.zeros(audio_waveform1.shape[0], samples1 - audio_waveform1.shape[1])
+                audio_waveform1 = torch.cat([audio_waveform1, padding], dim=1)
+                print(f"Audio1 padded with silence to match video duration")
+
         if audio_waveform2 is None:
             audio_waveform2 = torch.zeros((1, samples2))
             print(f"Audio2: Silence generated, shape={audio_waveform2.shape}")
+        elif audio_waveform2.shape[1] < samples2:
+            # Audio is shorter than video
+            if audio_match_method == "repeat_audio":
+                # Calculate how many times to repeat the audio
+                repeats_needed = math.ceil(samples2 / audio_waveform2.shape[1])
+                repeated_audio = audio_waveform2.repeat(1, repeats_needed)
+                # Trim to exact length needed
+                audio_waveform2 = repeated_audio[:, :samples2]
+                print(f"Audio2 repeated {repeats_needed} times to match video duration")
+            else:  # pad_with_silence
+                # Pad with silence
+                padding = torch.zeros(audio_waveform2.shape[0], samples2 - audio_waveform2.shape[1])
+                audio_waveform2 = torch.cat([audio_waveform2, padding], dim=1)
+                print(f"Audio2 padded with silence to match video duration")
 
         # Match channel counts between primary audio streams
         if audio_waveform1.shape[0] != audio_waveform2.shape[0]:
