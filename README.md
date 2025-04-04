@@ -2,7 +2,7 @@
 
 A powerful ComfyUI custom node for combining video clips with synchronized audio, background music, and advanced audio controls.
 
-![DJ_VideoAudioMixer Demo](https://github.com/yourusername/DJ_VideoAudioMixer/raw/main/examples/demo.png)
+![image](https://github.com/user-attachments/assets/f84c19c2-fe78-4bb8-9647-c7dff80add37)
 
 ## Features
 
