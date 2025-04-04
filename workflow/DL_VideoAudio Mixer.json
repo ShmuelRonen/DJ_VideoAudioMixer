@@ -1,0 +1,463 @@
+{
+  "id": "7a8da134-3a9f-40f0-8c29-94d804405dc3",
+  "revision": 0,
+  "last_node_id": 32,
+  "last_link_id": 54,
+  "nodes": [
+    {
+      "id": 32,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2968.568115234375,
+        4487.552734375
+      ],
+      "size": [
+        214.7587890625,
+        694.2378540039062
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 49
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 50
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "7236c5dff09e64dcf8d5946f93d4d7fc4f1a6147",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 30,
+        "loop_count": 0,
+        "filename_prefix": "com",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "com_00003-audio.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 30,
+            "workflow": "com_00003.png",
+            "fullpath": "/tmp/latentsync_23bc7800/latentsync_83edcfe7/latentsync_64ce1d80/latentsync_16c6a04c/latentsync_6fd7538e/latentsync_6e930367/latentsync_79b0277b/latentsync_a81b5f3a/latentsync_55a8e058/latentsync_6cb38634/latentsync_e6b31b17/com_00003-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": "LoadAudio",
+      "pos": [
+        2538.34033203125,
+        4828.03173828125
+      ],
+      "size": [
+        315,
+        136
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            54
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.26",
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "music.mp3",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 29,
+      "type": "DJ_VideoAudioMixer",
+      "pos": [
+        2523.01171875,
+        4483.80810546875
+      ],
+      "size": [
+        367.79998779296875,
+        250
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images1",
+          "type": "IMAGE",
+          "link": 44
+        },
+        {
+          "name": "audio1",
+          "type": "AUDIO",
+          "link": 45
+        },
+        {
+          "name": "video_info1",
+          "type": "VHS_VIDEOINFO",
+          "link": 51
+        },
+        {
+          "name": "images2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 46
+        },
+        {
+          "name": "audio2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "video_info2",
+          "shape": 7,
+          "type": "VHS_VIDEOINFO",
+          "link": 53
+        },
+        {
+          "name": "bgm",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 54
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images_output",
+          "type": "IMAGE",
+          "links": [
+            49
+          ]
+        },
+        {
+          "name": "audio_output",
+          "type": "AUDIO",
+          "links": [
+            50
+          ]
+        },
+        {
+          "name": "video_info_output",
+          "type": "VHS_VIDEOINFO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DJ_VideoAudioMixer"
+      },
+      "widgets_values": [
+        "second_video",
+        0,
+        0,
+        0.2
+      ]
+    },
+    {
+      "id": 30,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        1786.15966796875,
+        4478.916015625
+      ],
+      "size": [
+        247.455078125,
+        728.8099365234375
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ]
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            45
+          ]
+        },
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "links": [
+            51
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "7236c5dff09e64dcf8d5946f93d4d7fc4f1a6147",
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "a (27).mp4",
+        "force_rate": 0,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 0,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "AnimateDiff",
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "a (27).mp4",
+            "type": "input",
+            "format": "video/mp4",
+            "force_rate": 0,
+            "custom_width": 0,
+            "custom_height": 0,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 31,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        2098.116943359375,
+        4614.3603515625
+      ],
+      "size": [
+        247.455078125,
+        728.8099365234375
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            46
+          ]
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "7236c5dff09e64dcf8d5946f93d4d7fc4f1a6147",
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "a (33).mp4",
+        "force_rate": 0,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 0,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "AnimateDiff",
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "a (33).mp4",
+            "type": "input",
+            "format": "video/mp4",
+            "force_rate": 0,
+            "custom_width": 0,
+            "custom_height": 0,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+          }
+        }
+      }
+    }
+  ],
+  "links": [
+    [
+      44,
+      30,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      45,
+      30,
+      2,
+      29,
+      1,
+      "AUDIO"
+    ],
+    [
+      46,
+      31,
+      0,
+      29,
+      3,
+      "IMAGE"
+    ],
+    [
+      49,
+      29,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      50,
+      29,
+      1,
+      32,
+      1,
+      "AUDIO"
+    ],
+    [
+      51,
+      30,
+      3,
+      29,
+      2,
+      "VHS_VIDEOINFO"
+    ],
+    [
+      53,
+      31,
+      3,
+      29,
+      5,
+      "VHS_VIDEOINFO"
+    ],
+    [
+      54,
+      5,
+      0,
+      29,
+      6,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9646149645000006,
+      "offset": [
+        -1225.7410291743554,
+        -4328.996174166628
+      ]
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ue_links": []
+  },
+  "version": 0.4
+}
