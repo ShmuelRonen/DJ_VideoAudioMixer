@@ -14,10 +14,10 @@ class DJ_VideoAudioMixer:
         return {
             "required": {
                 "images1": ("IMAGE", ),
-                "audio1": ("AUDIO", ),
                 "video_info1": ("VHS_VIDEOINFO", ),
             },
             "optional": {
+                "audio1": ("AUDIO", ),
                 "images2": ("IMAGE", ),
                 "audio2": ("AUDIO", ),
                 "video_info2": ("VHS_VIDEOINFO", ),
@@ -70,10 +70,11 @@ class DJ_VideoAudioMixer:
         
         return audio_tensor
 
-    def VideoAudioMixer(self, images1, audio1, video_info1, images2=None, audio2=None, video_info2=None, 
+    def VideoAudioMixer(self, images1, video_info1, audio1=None, images2=None, audio2=None, video_info2=None, 
                         bgm=None, bgm_mode="all", bgm_volume=0.3, fade_in_sec=1.0, fade_out_sec=1.0,
                         audio_match_method="pad_with_silence"):
         if images2 is None or video_info2 is None:
+            # Return with just the first video and its audio (if any)
             return (images1, audio1, video_info1)
             
         print(f"DEBUG: bgm={bgm is not None}, bgm_mode={bgm_mode}, bgm_volume={bgm_volume}, fade_in_sec={fade_in_sec}, fade_out_sec={fade_out_sec}")
