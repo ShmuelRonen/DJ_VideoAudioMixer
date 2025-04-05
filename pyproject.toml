@@ -1,0 +1,14 @@
+[project]
+name = "dj_videoaudiomixer"
+description = "A powerful ComfyUI custom node for combining video clips with synchronized audio, background music, and advanced audio controls."
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/ShmuelRonen/DJ_VideoAudioMixer"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "DJ_VideoAudioMixer"
+Icon = ""
